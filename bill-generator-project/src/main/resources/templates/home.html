@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hi spring</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container my-5">
+		<h3>Add Product</h3>
+		<div class="card">
+			<div class="card-body">
+				<div class="col-md-10">
+					<form th:action="@{/billGenerator/addProduct}" method="post">
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label for="name" class="col-form-label">Select Product</label>
+								<!-- <input type="text" th:field="*{name}" class="form-control"
+									id="name" placeholder="Name"> <span
+									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+									class="text-danger"></span>  -->
+								<select class="form-control" id="productName" name="productName">
+									<option th:each="productName : ${products}" th:value="${productName}"
+										th:text="${productName}"></option>
+
+									<!-- <option th:value="${task}" th:text="${task}"></option>
+									<option th:value="'iphone'" th:text="Iphone"></option>
+									<option th:value="'orange'" th:text="Orange"></option>
+									<option th:value="'apple'" th:text="Apple"></option>
+									<option th:value="'pencil'" th:text="Pencil"></option>
+									<option th:value="'pen'" th:text="Pen"></option> -->
+								</select>
+							</div>
+							<div class="col-md-6">
+								<input type="submit" class="btn btn-primary" value="Add Product">
+							</div>
+
+							<div class="form-group col-md-8"></div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  th:each="productDetails : ${productDetailsList}" th:value="${productDetails}">
+        <td th:text="${productDetails.key.name}"></td>
+        <td th:text="${productDetails.value}"></td>
+        <td th:text="${productDetails.key.price}"></td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-primary" value="Total Bill" th:href="@{/billGenerator/generateBill}" ></a>
+  
+	</div>
+</body>
+</body>
+</html>
