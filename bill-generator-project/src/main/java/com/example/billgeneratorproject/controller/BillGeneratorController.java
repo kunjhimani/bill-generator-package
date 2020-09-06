@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
@@ -25,6 +26,8 @@ import com.example.billgeneratorproject.service.BillGeneratorService;
 @Controller
 @RequestMapping("/billGenerator")
 public class BillGeneratorController {
+	
+	static Logger logger = Logger.getLogger(BillGeneratorController.class.getName());
 
 	@Autowired
 	private BillGeneratorService billGeneratorService;
@@ -34,6 +37,8 @@ public class BillGeneratorController {
 	 */
 	@GetMapping("/home")
 	public String homePage(Model model) {
+		
+		logger.info("add items to your cart here");
 		model.addAttribute("products", billGeneratorService.getProductsName());
 		model.addAttribute("productDetailsList", billGeneratorService.generateTotalBill());
 		return "home";
@@ -53,6 +58,15 @@ public class BillGeneratorController {
 	 * */
 	@GetMapping("/generateBill")
 	public String generateBill(Model model) {
+		
+		logger.info("generate your total bill here");
+		/* get total price of items without tax */
+		model.addAttribute("totalPrice", billGeneratorService.getTotal("price"));
+		
+		/* get total tax on items */
+		model.addAttribute("totalTax", billGeneratorService.getTotal("tax"));
+		
+		/* return the list of all items */
 		model.addAttribute("productDetailsList", billGeneratorService.generateTotalBill());
 		return "total-bill";
 	}

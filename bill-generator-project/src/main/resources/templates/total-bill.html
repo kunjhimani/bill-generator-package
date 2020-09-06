@@ -9,18 +9,24 @@ body {
 .padding {
     padding: 2rem !important
 }
-
+.table-responsive-sm{
+padding: 40px 20px;
+}
+.totalSection{
+width: 30% !important;
+float: right;
+}
+.thead{
+background-color: #f2f2f2;
+}
 .card {
+background-color: #f2f2f2;
+	padding:16px;
     margin-bottom: 30px;
     border: none;
     -webkit-box-shadow: 0px 1px 2px 1px rgba(154, 154, 204, 0.22);
     -moz-box-shadow: 0px 1px 2px 1px rgba(154, 154, 204, 0.22);
     box-shadow: 0px 1px 2px 1px rgba(154, 154, 204, 0.22)
-}
-
-.card-header {
-    background-color: #fff;
-    border-bottom: 1px solid #e6e6f2
 }
 
 h3 {
@@ -69,7 +75,7 @@ h5 {
                      <div>Email: contact@boomboom.com</div>
                      <div>Phone: +91 9897 989 989</div>
                  </div>
-                 <div class="col-sm-6 ">
+                 <div class="col-sm-6 " style="text-align: end;">
                      <h5 class="mb-3">To:</h5>
                      <h3 class="text-dark mb-1">Akshay Singh</h3>
                      <div>478, Nai Sadak</div>
@@ -79,7 +85,7 @@ h5 {
                  </div>
              </div>
              <div class="table-responsive-sm">
-                 <table class="table table-striped">
+                 <table class="table">
                      <thead>
                          <tr>
                              <th class="center">#</th>
@@ -87,7 +93,7 @@ h5 {
                              <th>Category</th>
                              <th class="right">Price</th>
                              <th class="center">Quantity</th>
-                             <th class="center">Tax</th>
+                             <th class="center">Tax(%)</th>
                              
                              <th class="right">Total</th>
                          </tr>
@@ -108,16 +114,15 @@ h5 {
                  </table>
              </div>
              <div class="row">
-                 <div class="col-lg-4 col-sm-5">
-                 </div>
-                 <div class="col-lg-4 col-sm-5 ml-auto">
+                 <div class="col-8"></div>
+                 <div class="col4 totalSection">
                      <table class="table table-clear">
                          <tbody>
                              <tr >
                                  <td class="left">
                                      <strong class="text-dark">Subtotal</strong>
                                  </td>
-                                 <td class="right"></td>
+                                 <td class="right" th:text="${totalPrice}"></td>
                                  
                                  <!-- productDetails.key.price -->
                              </tr>
@@ -126,13 +131,13 @@ h5 {
                                  <td class="left">
                                      <strong class="text-dark">Tax</strong>
                                  </td>
-                                 <td class="right">$2,304,00</td>
+                                 <td class="right" th:text="${totalTax}"></td>
                              </tr>
                              <tr>
                                  <td class="left">
                                      <strong class="text-dark">Total</strong> </td>
                                  <td class="right">
-                                     <strong class="text-dark">$20,744,00</strong>
+                                     <strong class="text-dark" th:text="${totalTax + totalPrice }"></strong>
                                  </td>
                              </tr>
                          </tbody>

@@ -15,5 +15,9 @@ public interface BillGeneratorService {
 	public HashMap<ProductDto, Integer> generateTotalBill();
 	
 	public List<String> getProductsName();
+	
+	public int getTotal(String key);
+	
+	
 
 }

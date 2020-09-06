@@ -5,6 +5,16 @@ public class CategoryDto {
 	private String categoryName;
 	private int levy;
 
+	public CategoryDto() {
+		super();
+	}
+
+	public CategoryDto(String categoryName, int levy) {
+		super();
+		this.categoryName = categoryName;
+		this.levy = levy;
+	}
+
 	public int getId() {
 		return id;
 	}

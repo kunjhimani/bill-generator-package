@@ -35,7 +35,7 @@ public class BillGeneratorServiceImpl implements BillGeneratorService {
 
 		if (productDetailsList.containsKey(addProduct)) {
 			/* if product already exists in the list */
-			productDetailsList.put(addProduct, new Integer(productDetailsList.get(addProduct) + CONSTANTS.ONE.getValue()));
+			productDetailsList.put(addProduct,new Integer(productDetailsList.get(addProduct) + CONSTANTS.ONE.getValue()));
 			return false;
 		} else {
 			/* if new product is added */
@@ -52,6 +52,18 @@ public class BillGeneratorServiceImpl implements BillGeneratorService {
 
 	public HashMap<ProductDto, Integer> generateTotalBill() {
 		return productDetailsList;
+	}
+
+	public int getTotal(String key) {
+		int total = 0;
+		for (Map.Entry<ProductDto, Integer> entry : productDetailsList.entrySet()) {
+			if (key.equalsIgnoreCase("price")) {
+				total = total + (entry.getKey().getPrice()*entry.getValue());
+			} else if (key.equalsIgnoreCase("tax")) {
+				total = total + ((entry.getValue() * entry.getKey().getCategory().getLevy()*entry.getKey().getPrice())/100);
+			}
+		}
+		return total;
 
 	}
 

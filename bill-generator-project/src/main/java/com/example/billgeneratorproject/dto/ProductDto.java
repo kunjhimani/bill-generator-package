@@ -7,6 +7,18 @@ public class ProductDto {
 	private String name;
 	private CategoryDto category;
 
+	
+	public ProductDto() {
+		super();
+	}
+
+	public ProductDto(int price, String name, CategoryDto category) {
+		super();
+		this.price = price;
+		this.name = name;
+		this.category = category;
+	}
+
 	public CategoryDto getCategory() {
 		return category;
 	}
@@ -75,10 +87,5 @@ public class ProductDto {
 			return false;
 		return true;
 	}
-
-	/*
-	 * public String getCategory() { return category; } public void
-	 * setCategory(String category) { this.category = category; }
-	 */
 
 }

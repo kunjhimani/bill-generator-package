@@ -1,7 +1,7 @@
 package com.example.billgeneratorproject.enums;
 
 public enum CONSTANTS {
-	ONE(0);
+	ONE(1);
 	
 	private final int value;
 
